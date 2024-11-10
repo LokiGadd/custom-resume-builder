@@ -1,34 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= name %>'s Resume</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1, h2 { color: #333; }
-        .section { margin-bottom: 20px; }
-        .section h2 { margin-bottom: 5px; }
-        .section p { margin: 5px 0; }
-        .contact-info { font-size: 18px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .contact-info,
+        .experience,
+        .education {
+            margin: 20px 0;
+        }
+
+        .list-item {
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 40px;
+        }
     </style>
 </head>
+
 <body>
-    <h1><%= name %>'s Resume</h1>
+    <div class="container">
+        <h1>
+            <%= name %>
+        </h1>
+        <div class="contact-info">
+            <p>Email: <%= email %>
+            </p>
+            <p>Phone: <%= phone %>
+            </p>
+            <p>LinkedIn: <%= linkedIn %>
+            </p>
+        </div>
 
-    <div class="contact-info">
-        <p>Email: <%= email %></p>
-        <p>Phone: <%= phone %></p>
-    </div>
+        <div class="experience">
+            <h2>Experience</h2>
+            <div class="list-item">
+                <p><strong>Software Engineer at XYZ Corp</strong> (2018 - Present)</p>
+                <ul>
+                    <li>Developed web applications using JavaScript, Node.js, and React.</li>
+                    <li>Collaborated with cross-functional teams to deliver high-quality software.</li>
+                </ul>
+            </div>
+            <div class="list-item">
+                <p><strong>Junior Developer at ABC Tech</strong> (2016 - 2018)</p>
+                <ul>
+                    <li>Assisted in designing and developing internal tools.</li>
+                    <li>Improved performance of existing systems.</li>
+                </ul>
+            </div>
+        </div>
 
-    <div class="section">
-        <h2>Education</h2>
-        <p><%= education %></p>
-    </div>
+        <div class="education">
+            <h2>Education</h2>
+            <div class="list-item">
+                <p><strong>B.Sc. in Computer Science</strong>, University of Somewhere (2014 - 2018)</p>
+            </div>
+        </div>
 
-    <div class="section">
-        <h2>Experience</h2>
-        <p><%= experience %></p>
+        <div class="footer">
+            <p>Generated with Puppeteer</p>
+        </div>
     </div>
 </body>
+
 </html>

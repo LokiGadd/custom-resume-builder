@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const puppeteer = require('puppeteer');
 const path = require('path');
 const ejs = require('ejs');
+const fs = require('fs');
 
 const app = express();
 const port = 3000;
@@ -18,7 +19,7 @@ app.get('/', (req, res) => {
 
 // Route to handle resume generation
 app.post('/generate-resume', async (req, res) => {
-    const { name, email, phone, education, experience } = req.body;
+    const { name, email, phone, education, experience, linkedIn } = req.body;
 
     // Render the HTML resume template with the provided data
     const resumeHtml = await ejs.renderFile(path.join(__dirname, 'views', 'resume-template.ejs'), {
@@ -26,17 +27,25 @@ app.post('/generate-resume', async (req, res) => {
         email,
         phone,
         education,
-        experience
+        experience,
+        linkedIn
     });
 
     // Launch puppeteer to create the PDF
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setContent(resumeHtml);
-    const pdfBuffer = await page.pdf({ format: 'A4' });
+    await page.pdf({ format: 'A4', path: 'resume_backend.pdf'});
+    
+    /*
+    new code
+    */
 
     await browser.close();
 
+    const pdfBuffer = fs.readFileSync(path.join(__dirname,'resume_backend.pdf'));
+
+    
     // Send the PDF as a download response
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename="resume.pdf"');
